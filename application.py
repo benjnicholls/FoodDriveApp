@@ -6,7 +6,7 @@ from flask_login import login_user, login_required, logout_user
 from forms import LoginForm, RegisterForm, AddForm
 from model import User, Customer, AddedCustomer, CheckIn
 from extensions import db, login_manager, bootstrap
-from utils import sum_family_count, read_barcode
+from check_in_tools import sum_family_count, read_barcode
 import os
 from dotenv import load_dotenv
 
