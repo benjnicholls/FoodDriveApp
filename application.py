@@ -1,14 +1,14 @@
 from datetime import datetime
-
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 from forms import LoginForm, RegisterForm, AddForm
 from model import User, Customer, AddedCustomer, CheckIn
 from extensions import db, login_manager, bootstrap
-from check_in_tools import sum_family_count, read_barcode
+from check_in_tools import sum_family_count, read_barcode, format_csv
 import os
 from dotenv import load_dotenv
+import pandas as pd
 
 load_dotenv()
 application = Flask(__name__)
@@ -147,6 +147,11 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+
+@application.route('/update')
+def update_db():
+    format_csv().to_sql('customer', db.engine, if_exists='replace', index=False)
+    return jsonify({'status': 'success'})
 
 if __name__ == "__main__":
     application.run(debug=True, port=5000)
