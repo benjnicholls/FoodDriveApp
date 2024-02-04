@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form_row %}
+{% from 'bootstrap5/form.html' import render_field %}
+
+{% block tab4 %}
+<a href="{{ url_for('check_in_bp.add') }}" class="nav-link active" aria-current="page">
+{% endblock %}
+
+{% block content%}
+<!-- main content -->
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+      <!-- check in form -->
+      <div>
+          <!--<form method="post" action="{{ url_for('check_in_bp.add') }}">
+          {{ render_form_row([form.f_name, form.l_name]) }}
+          {{ render_form_row([form.address, form.zipcode, form.language]) }}
+          {{ render_form_row([form.age, form.seniors, form.adults, form.children]) }}
+          {{ render_field(form.submit, button_size='sm') }}
+          </form> -->
+          {{render_form(form)}}
+      </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+.env
+.sourcery.yaml
+application/test.py
+instance/food-drive.db
+.idea
+
+
