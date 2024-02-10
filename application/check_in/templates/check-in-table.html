@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block tab5 %}<a href="{{ url_for('check_in_bp.display_checked_in') }}" class="nav-link active" aria-current="page"> {% endblock %}
+
+{% block content %}
+<!-- main content -->
+    <h1>Date: {{ date }}</h1>
+      <!-- rendered table -->
+      <table class="table">
+          <thead>
+          <tr>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Address</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- for loop for each row that was found in database -->
+          {% for new_customer in new_customers %}
+                <tr>
+                    <td>{{ new_customer.new_customer.f_name }}</td>
+                    <td>{{ new_customer.new_customer.l_name }}</td>
+                    <td>{{ new_customer.new_customer.address}}</td>
+                </tr>
+          {% endfor %}
+<!--          {% for customer in customers %}-->
+<!--                <tr>-->
+<!--                    <td>{{ customer.customer.HOH_first_name }}</td>-->
+<!--                    <td>{{ customer.customer.HOH_last_name }}</td>-->
+<!--                    <td>{{ customer.customer.address1 }}</td>-->
+<!--                </tr>-->
+<!--          {% endfor %}-->
+          </tbody>
+      </table>
+{% endblock %}

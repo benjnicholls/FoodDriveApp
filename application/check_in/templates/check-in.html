@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block tab3 %}<a href="{{ url_for('check_in_bp.check_in') }}" class="nav-link active" aria-current="page">{% endblock %}
+
+{% block content %}
+<!-- main content -->
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+      <!-- check in form -->
+      <form method="post" action="{{ url_for('check_in_bp.check_in') }}" enctype="multipart/form-data">
+          <div class="row mb-3">
+              <div class="col-sm-4">{{ form.input_file.label(class_="col-sm-3 col-form-label") }}</div>
+              <div class="col-sm-4">{{ form.input_file(class_="form-control", capture_="environment", accept_="image/*")}}</div>
+              <div class="col-sm-4">{{ form.submit_barcode(class_="btn btn-primary") }}</div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-4">{{ form.first_name.label(class_="col-sm-3 col-form-label") }}</div>
+              <div class="col-sm-4">{{ form.first_name(class_="form-control") }}</div>
+              <div class="col-sm-4">{{ form.submit_name(class_="btn btn-primary") }}</div>
+          </div>
+      </form>
+
+      <!-- rendered table -->
+      <table class="table">
+          <thead>
+          <tr>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Address</th>
+              <th scope="col">Selection</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- for loop for each row that was found in database -->
+          {% for each in table_data %}
+                <tr>
+                    <td>{{ each.HOH_first_name }}</td>
+                    <td>{{ each.HOH_last_name }}</td>
+                    {% if each.address2 %}
+                    <td>{{ each.address1 + " " + each.address2 }}</td>
+                    {% else %}
+                    <td>{{ each.address1 }}</td>
+                    {% endif %}
+                    <td><a href="{{ url_for('display_checked_in', id=each.id) }}"><button class="btn btn-outline-primary">Select</button></a></td>
+                </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>
+{% endblock %}

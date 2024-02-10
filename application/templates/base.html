@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% from 'bootstrap5/form.html' import render_form %}
+<head>
+  {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ description }}">
+    <link rel="shortcut icon" href="/favicon.ico">
+  {% block styles %}
+      {{ bootstrap.load_css() }}
+  {% endblock %}
+    <title>{{ title }}</title>
+  {% endblock %}
+</head>
+<body>
+<!-- header -->
+    <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+          {% block header %}
+        <li class="nav-item">{% block tab1 %}<a href="{{ url_for('home_bp.home') }}" class="nav-link">{% endblock %}Home</a></li>
+        {% if not current_user.is_authenticated %}
+        <li class="nav-item">{% block tab2 %}<a href="{{ url_for('users_bp.login') }}" class="nav-link">{% endblock %}Login</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a href="{{ url_for('users_bp.logout') }}" class="nav-link">Logout</a></li>
+        <li class="nav-item">{% block tab3 %}<a href="{{ url_for('check_in_bp.check_in') }}" class="nav-link">{% endblock %}Check-in</a></li>
+        <li class="nav-item">{% block tab4 %}<a href="{{ url_for('check_in_bp.add') }}" class="nav-link"> {% endblock %}Add</a></li>
+        <li class="nav-item">{% block tab5 %}<a href="{{ url_for('check_in_bp.display_checked_in') }}" class="nav-link"> {% endblock %}Checked In Today</a></li>
+        {% endif %}
+          {% endblock %}
+      </ul>
+    </header>
+  </div>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color:red; text-align:center;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    {% block content %}{% endblock %}
+
+    {% block scripts %}
+        {{ bootstrap.load_js() }}
+    {% endblock %}
+</body>
+</html>

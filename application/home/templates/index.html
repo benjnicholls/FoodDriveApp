@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block tab1 %}<a href="{{ url_for('home_bp.home') }}" class="nav-link active" aria-current="page">{% endblock %}
+
+{% block content%}
+<!-- main content -->
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+    <h1 class="text-body-emphasis">Church of Scientology Food Drive</h1>
+    <p class="lead">
+      Well done everyone. We have serviced a total of {{ residents }} Ventura County residents.
+    </p>
+  </div>
+</div>
+{% endblock %}
