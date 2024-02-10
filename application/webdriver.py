@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from datetime import datetime
+from os import getenv
 
 
 def login(driver):
@@ -12,8 +13,8 @@ def login(driver):
     WebDriverWait(driver, timeout=10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, 'a[href$="login.php"]'))).click()
     WebDriverWait(driver, timeout=10).until(
-        EC.presence_of_element_located((By.NAME, 'username'))).send_keys("mgr-cos")
-    driver.find_element(By.NAME, 'password').send_keys("mgr-pa0580")
+        EC.presence_of_element_located((By.NAME, 'username'))).send_keys(getenv('PANTRYTRAK_USERNAME'))
+    driver.find_element(By.NAME, 'password').send_keys(getenv('PANTRYTRAK_PASSWORD'))
     driver.find_element(By.NAME, 'submit').click()
     print("Logged in")
 
