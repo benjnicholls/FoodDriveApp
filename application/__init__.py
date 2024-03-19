@@ -10,7 +10,7 @@ bootstrap = Bootstrap5()
 login_manager = LoginManager()
 
 
-def init_app():
+def init_app():  # sourcery skip: extract-method
     application = Flask(__name__, instance_relative_config=False)
     application.config.from_object('config.Config')
 
