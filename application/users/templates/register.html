@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block tab6 %}<a href="{{ url_for('users_bp.register') }}" class="nav-link active" aria-current="page">{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+      {{ render_form(form) }}
+  </div>
+</div>
+{% endblock %}

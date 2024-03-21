@@ -24,6 +24,8 @@ def init_app():  # sourcery skip: extract-method
         from .check_in import check_in_routes
 
         db.create_all()
+        # uncomment when in production
+        # driver.update(db)
 
         application.register_blueprint(home_routes.home_bp)
         application.register_blueprint(users_routes.users_bp)

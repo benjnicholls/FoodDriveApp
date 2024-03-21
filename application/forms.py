@@ -16,6 +16,8 @@ class LoginForm(FlaskForm):
 class CheckInForm(FlaskForm):
     input_file = FileField(label='Capture Barcode')
     first_name = StringField(label='First Name')
+    provider = SelectField(label='Provider', choices=[('USDA', 'USDA'), ('FoodShare', 'FoodShare')])
+    proxy = StringField(label='Proxy (leave blank if none)')
     submit_barcode = SubmitField('Search')
     submit_name = SubmitField('Search')
 
@@ -66,3 +68,9 @@ class AddForm(FlaskForm):
         validators=[InputRequired()]
     )
     submit = SubmitField('Add')
+
+
+class RegisterForm(FlaskForm):
+    username = StringField(label='Username', validators=[InputRequired(message='Username is required')])
+    password = PasswordField(label='Password', validators=[InputRequired(message='Password is required'),])
+    submit = SubmitField('Register')

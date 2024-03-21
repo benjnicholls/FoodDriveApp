@@ -1,6 +1,7 @@
 from ..models import db, Customer
 from sqlalchemy.sql import func
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for
+from psutil import virtual_memory, cpu_percent
 
 home_bp = Blueprint(
     name='home_bp',
@@ -22,3 +23,8 @@ def home():
         description='A homepage for the food drive web application. '
                     'From here, you can login and check in guests or add them.'
     )
+
+
+@home_bp.route('/usage')
+def usage():
+    return render_template('usage.html', memory=virtual_memory(), cpu=cpu_percent())

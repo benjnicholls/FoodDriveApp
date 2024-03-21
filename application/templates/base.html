@@ -28,6 +28,10 @@
         <li class="nav-item">{% block tab3 %}<a href="{{ url_for('check_in_bp.check_in') }}" class="nav-link">{% endblock %}Check-in</a></li>
         <li class="nav-item">{% block tab4 %}<a href="{{ url_for('check_in_bp.add') }}" class="nav-link"> {% endblock %}Add</a></li>
         <li class="nav-item">{% block tab5 %}<a href="{{ url_for('check_in_bp.display_checked_in') }}" class="nav-link"> {% endblock %}Checked In Today</a></li>
+        {% if current_user.username == 'bnicholls' %}
+        <li class="nav-item">{% block tab6 %}<a href="{{ url_for('users_bp.register') }}" class="nav-link"> {% endblock %}Register</a></li>
+        <li class="nav-item">{% block tab7 %}<a href="{{ url_for('home_bp.usage') }}" class="nav-link"> {% endblock %}Usage</a></li>
+        {% endif %}
         {% endif %}
           {% endblock %}
       </ul>
@@ -44,6 +48,7 @@
 
     {% block scripts %}
         {{ bootstrap.load_js() }}
+
     {% endblock %}
 </body>
 </html>

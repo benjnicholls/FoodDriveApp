@@ -1,10 +1,10 @@
+import os
 from . import db
-from flask_login import UserMixin
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(UserMixin, db.Model):
+class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(
         db.Integer,
@@ -32,13 +32,33 @@ class User(UserMixin, db.Model):
         db.DateTime,
         index=False,
         unique=False,
-        nullable=True
+        nullable=True,
+        default=datetime.now
     )
     user_type = db.Column(
         db.String(100),
         unique=False,
-        nullable=False
+        nullable=False,
+        default='user'
     )
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return self.is_active
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        try:
+            return str(self.id)
+        except AttributeError:
+            raise NotImplementedError("No `id` attribute - override `get_id`") from None
 
     def set_password(self, password):
         """Create hashed password."""
@@ -49,7 +69,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return f'<User {self.username}>'
 
 
 class Customer(db.Model):
@@ -67,7 +87,7 @@ class Customer(db.Model):
     current_selected_form_language = db.Column(db.String(250))
 
     def __repr__(self):
-        return '<Customer {}>'.format(self.HOH_first_name + self.HOH_last_name)
+        return f'<Customer {self.HOH_first_name + self.HOH_last_name}>'
 
 
 class AddedCustomer(db.Model):
@@ -85,7 +105,7 @@ class AddedCustomer(db.Model):
     date_added = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
     def __repr__(self):
-        return '<Customer {}>'.format(self.f_name + self.l_name)
+        return f'<Customer {self.f_name + self.l_name}>'
 
 
 class CheckIn(db.Model):

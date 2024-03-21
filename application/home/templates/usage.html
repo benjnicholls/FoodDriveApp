@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block tab7 %}<a href="{{ url_for('home_bp.usage') }}" class="nav-link active" aria-current="page">{% endblock %}
+
+{% block content%}
+<!-- main content -->
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+    <h1 class="text-body-emphasis">Usage Stats</h1>
+    <p class="lead">
+      Memory usage is: {{ memory }}
+      CPU usage is: {{ cpu }}
+    </p>
+  </div>
+</div>
+{% endblock %}
