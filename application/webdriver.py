@@ -103,7 +103,7 @@ class WebDriverSingleton:
         self.options.set_preference("browser.download.manager.showWhenStarting", False)
         self.options.set_preference("browser.download.dir", '~/PycharmProjects/FoodDriveApp/tmp')
         self.options.set_preference("browser.helperApps.neverAsk.saveToDisk", "csv")
-        self.options.binary_location = '/lib/firefox/firefox.sh'
+        self.options.binary_location = '/usr/bin/firefox'
         self.options.add_argument('--disable-blink-features=AutomationControlled')
         self.driver = webdriver.Firefox(options=self.options)
 

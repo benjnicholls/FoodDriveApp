@@ -3,5 +3,9 @@
 application/test.py
 instance/food-drive.db
 .idea
-
+/__pycache__
+/application/__pycache__
+/application/check_in/__pycache__
+/application/home/__pycache__
+/application/users/__pycache__
 

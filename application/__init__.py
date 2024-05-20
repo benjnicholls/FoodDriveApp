@@ -25,7 +25,7 @@ def init_app():  # sourcery skip: extract-method
 
         db.create_all()
         # uncomment when in production
-        # driver.update(db)
+        driver.update(db)
 
         application.register_blueprint(home_routes.home_bp)
         application.register_blueprint(users_routes.users_bp)
