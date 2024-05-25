@@ -9,3 +9,8 @@ instance/food-drive.db
 /application/home/__pycache__
 /application/users/__pycache__
 
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
